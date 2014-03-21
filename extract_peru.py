@@ -10,6 +10,7 @@ import sys
 def extract(filename):
     import os
     import json
+    import time
 
     if os.path.isfile(filename):
         f = codecs.open(filename, "r", "utf8")
@@ -19,6 +20,8 @@ def extract(filename):
         sismos_peru = []
         for i in data['features']:
             if "Peru" in i['properties']['place']:
+                date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(i['properties']['time']/1000))
+                i['date'] = date
                 sismos_peru.append(i)
 
         out = {}
