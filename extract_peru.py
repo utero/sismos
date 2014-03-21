@@ -21,7 +21,7 @@ def extract(filename):
         for i in data['features']:
             if "Peru" in i['properties']['place']:
                 date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(i['properties']['time']/1000))
-                i['date'] = date
+                i['properties']['date'] = date
                 sismos_peru.append(i)
 
         out = {}
